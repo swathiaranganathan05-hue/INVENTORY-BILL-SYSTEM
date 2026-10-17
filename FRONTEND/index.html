@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory & Billing System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Inventory & Billing System</h1>
+    </header>
+
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Dashboard -->
+        <div class="welcome-card">
+
+            <h2>Dashboard</h2>
+
+            <p>
+                Manage your products, inventory, customers,
+                billing and sales in one place.
+            </p>
+
+        </div>
+
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard-cards">
+
+            <div class="card">
+                <h3>Total Products</h3>
+                <p>0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Stock</h3>
+                <p>0</p>
+            </div>
+
+            <div class="card">
+                <h3>Today's Sales</h3>
+                <p>₹0</p>
+            </div>
+
+            <div class="card">
+                <h3>Low Stock</h3>
+                <p>0</p>
+            </div>
+
+        </div>
+        
+<!-- Low Stock Alert -->
+<div class="low-stock-section">
+    <h2>⚠️ Low Stock Alert</h2>
+    <p>Products that need restocking (quantity 5 or less).</p>
+
+    <div id="lowStockList">
+        <p>Loading low-stock products...</p>
+    </div>
+</div>
+
+
+<!-- Sales Analytics -->
+<div class="sales-chart-section">
+    <h2>📊 Sales Analytics</h2>
+    <p>Track your daily sales performance.</p>
+
+    <div class="chart-container">
+        <canvas id="salesChart"></canvas>
+    </div>
+
+    <!-- Monthly Sales Report -->
+<div class="sales-chart-section">
+    <h2>📅 Monthly Sales Report</h2>
+    <p>Track your sales performance month by month.</p>
+
+    <div class="chart-container">
+        <canvas id="monthlySalesChart"></canvas>
+    </div>
+    
+<!-- Top-Selling Products -->
+<div class="sales-chart-section">
+    <h2>🏆 Top-Selling Products</h2>
+    <p>Products ranked by total quantity sold.</p>
+
+    <div class="chart-container">
+        <canvas id="topSellingProductsChart"></canvas>
+    </div>
+    <!-- Profit & Revenue Report -->
+<div class="sales-chart-section">
+    <h2>💰 Profit & Revenue Report</h2>
+    <p>View your total revenue and estimated profit.</p>
+
+    <div class="dashboard-cards">
+        <div class="card">
+            <h3>Total Revenue</h3>
+            <p id="totalRevenue">₹0.00</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Cost</h3>
+            <p id="totalCost">₹0.00</p>
+        </div>
+
+        <div class="card">
+            <h3>Estimated Profit</h3>
+            <p id="totalProfit">₹0.00</p>
+        </div>
+    </div>
+
+    <p id="profitReportMessage"></p>
+</div>
+
+    <p id="topSellingProductsMessage"></p>
+</div>
+
+
+    <p id="monthlySalesMessage"></p>
+</div>
+    <p id="salesChartMessage"></p>
+</div>
+
+        <!-- Products Section -->
+        <div class="products-section">
+
+            <h2>Products</h2>
+
+            <p>Add and manage your inventory products.</p>
+
+            <!-- Product Form -->
+            <div class="product-form">
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="Product Name"
+                >
+
+                <input
+                    type="text"
+                    id="category"
+                    placeholder="Category"
+                >
+
+                <input
+                    type="number"
+                    id="price"
+                    placeholder="Price"
+                >
+
+                <input
+                    type="number"
+                    id="costPrice"
+                    placeholder="Purchase Cost Price"
+                    min="0"
+                    step="0.01"
+                >
+                <input
+                    type="number"
+                    id="quantity"
+                    placeholder="Quantity"
+                >
+
+                <button type="button">
+                    Add Product
+                </button>
+
+            </div>
+
+
+            <!-- Products Table -->
+            <div class="product-table">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>No products added yet</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+<div class="products-section" id="billingSection">
+    <h2>Billing</h2>
+    <p>Create a bill for your customer.</p>
+
+    <div class="product-form">
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Customer Name"
+        >
+
+        <input
+            type="tel"
+            id="customerPhone"
+            placeholder="Customer Phone"
+        >
+
+        
+<div id="customerSuggestions" class="customer-suggestions"></div>
+
+
+        <select id="billProduct">
+            <option value="">Select Product</option>
+        </select>
+
+        <input
+            type="number"
+            id="billQuantity"
+            placeholder="Quantity"
+            min="1"
+            value="1"
+        >
+
+        <button type="button" id="addToBillButton">
+            Add to Bill
+        </button>
+
+    </div>
+
+    <div class="product-table">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="billItems">
+                <tr>
+                    <td colspan="5">No items added to bill</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="bill-summary">
+
+        <h3>Subtotal: ₹<span id="billSubtotal">0.00</span></h3>
+
+        <h3>GST (18%): ₹<span id="billGST">0.00</span></h3>
+
+        <h2>Grand Total: ₹<span id="billGrandTotal">0.00</span></h2>
+
+        <button type="button" id="generateBillButton">
+            Generate Bill
+        </button>
+
+    </div>
+
+</div>
+
+        <!-- Invoice History -->
+        <section class="products-section" id="invoiceHistorySection">
+            <h2>Invoice History</h2>
+
+            <input
+                type="text"
+                id="invoiceSearch"
+                placeholder="Search by customer name or invoice ID"
+            >
+
+            
+<div class="invoice-filters">
+    <label for="invoiceStartDate">From Date:</label>
+    <input type="date" id="invoiceStartDate">
+
+    <label for="invoiceEndDate">To Date:</label>
+    <input type="date" id="invoiceEndDate">
+
+    <button type="button" id="filterInvoicesBtn">
+        Filter
+    </button>
+
+    <button type="button" id="clearInvoiceFilterBtn">
+        Clear
+    </button>
+</div>
+
+<div class="invoice-sales-summary">
+    <h3>Filtered Sales Summary</h3>
+    <p>Total Invoices: <span id="filteredInvoiceCount">0</span></p>
+    <p>Total Sales: <span id="filteredInvoiceSales">₹0.00</span></p>
+</div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Invoice ID</th>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Total Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceHistoryBody">
+                    <tr>
+                        <td colspan="5">Loading invoices...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/script.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>
