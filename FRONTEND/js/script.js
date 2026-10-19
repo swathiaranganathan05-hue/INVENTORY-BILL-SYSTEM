@@ -28,12 +28,12 @@ addProductButton.addEventListener("click", async function () {
     try {
 
        
-let url = "http://192.168.196.229:5000/api/products";
+let url = "https://inventory-bill-system-1.onrender.com/api/products";
 let method = "POST";
 
 // If editing an existing product
 if (editingProductId) {
-    url = `http://192.168.196.229:5000/api/products/${editingProductId}`;
+    url = `https://inventory-bill-system-1.onrender.com/api/products/${editingProductId}`;
     method = "PUT";
 }
 
@@ -112,7 +112,7 @@ async function loadProducts() {
     try {
 
         const response = await fetch(
-            "http://192.168.196.229:5000/api/products"
+            "https://inventory-bill-system-1.onrender.com/api/products"
 
         );
 
@@ -192,7 +192,7 @@ async function editProduct(id) {
 
    try {
     const response = await fetch(
-        `http://192.168.196.229:5000/api/products/${id}`
+        `https://inventory-bill-system-1.onrender.com/api/products/${id}`
     );
 
 
@@ -247,7 +247,7 @@ async function deleteProduct(id) {
     
 try {
     const response = await fetch(
-        `http://192.168.196.229:5000/api/products/${id}`,
+        `https://inventory-bill-system-1.onrender.com/api/products/${id}`,
         {
             method: "DELETE"
         }
@@ -293,7 +293,7 @@ let billItems = [];
 // Load products into billing dropdown
 async function loadBillingProducts() {
     try {
-       const response = await fetch("http://192.168.196.229:5000/api/products");
+       const response = await fetch("https://inventory-bill-system-1.onrender.com/api/products");
         const products = await response.json();
 
         const dropdown = document.getElementById("billProduct");
@@ -421,7 +421,7 @@ document.getElementById("generateBillButton").addEventListener("click", async fu
     button.disabled = true;
 
     try {
-        const response = await fetch("http://192.168.196.229:5000/api/invoices", {
+        const response = await fetch("https://inventory-bill-system-1.onrender.com/api/invoices", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -582,7 +582,7 @@ async function loadInvoiceHistory() {
     const tbody = document.getElementById("invoiceHistoryBody");
 
     try {
-        const response = await fetch("http://192.168.196.229:5000/api/invoices");
+        const response = await fetch("https://inventory-bill-system-1.onrender.com/api/invoices");
 
 
         if (!response.ok) {
@@ -717,7 +717,7 @@ async function loadProfitReport() {
     try {
         
 const response = await fetch(
-    "http://192.168.196.229:5000/api/profit-report"
+    "https://inventory-bill-system-1.onrender.com/api/profit-report"
 );
 
         if (!response.ok) {
@@ -765,7 +765,7 @@ async function loadLowStockAlert() {
 
     try {
         const response = await fetch(
-            "http://192.168.196.229:5000/api/products"
+            "https://inventory-bill-system-1.onrender.com/api/products"
 
         );
 
@@ -826,7 +826,7 @@ async function loadLowStockAlert() {
 async function loadDashboardStats() {
     try {
         const response = await fetch(
-            "http://192.168.196.229:5000/api/dashboard-stats"
+            "https://inventory-bill-system-1.onrender.com/api/dashboard-stats"
 
         );
 
@@ -872,7 +872,7 @@ async function loadSalesChart() {
     if (!canvas) return;
 
     try {
-        const response = await fetch("http://192.168.196.229:5000/api/invoices");
+        const response = await fetch("https://inventory-bill-system-1.onrender.com/api/invoices");
 
 
         if (!response.ok) {
@@ -975,7 +975,7 @@ async function loadMonthlySalesChart() {
     if (!canvas) return;
 
     try {
-        const response = await fetch("http://192.168.196.229:5000/api/invoices");
+        const response = await fetch("https://inventory-bill-system-1.onrender.com/api/invoices");
 
 
         if (!response.ok) {
@@ -1079,7 +1079,7 @@ async function loadTopSellingProductsChart() {
     if (!canvas) return;
 
     try {
-        const response = await fetch("http://192.168.196.229:5000/api/invoices");
+        const response = await fetch("https://inventory-bill-system-1.onrender.com/api/invoices");
 
 
         if (!response.ok) {
@@ -1170,7 +1170,7 @@ if (customerPhoneInput && customerSuggestions) {
 
         try {
            const response = await fetch(
-    `http://192.168.196.229:5000/api/customers/search?phone=${encodeURIComponent(phone)}`
+    `https://inventory-bill-system-1.onrender.com/api/customers/search?phone=${encodeURIComponent(phone)}`
 );
 
 

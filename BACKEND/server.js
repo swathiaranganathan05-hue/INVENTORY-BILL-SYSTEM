@@ -15,10 +15,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 // MongoDB Connection
+const MONGO_URI =
+    process.env.MONGO_URI || "mongodb://localhost:27017/inventory_db";
+
 mongoose
-    .connect("mongodb://localhost:27017/inventory_db")
+    .connect(MONGO_URI)
     .then(() => {
         console.log("MongoDB connected successfully");
     })
