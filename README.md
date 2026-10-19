@@ -1,4 +1,4 @@
-Royal Supermarket – Inventory & Billing System
+Inventory & Billing System
 
 A web-based Inventory and Billing System designed to simplify product management, stock tracking, billing, and sales analysis for small businesses.
 
